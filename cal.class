@@ -85,20 +85,15 @@ public class cal {
     }
 
     private static boolean metod4islo(String st) throws IOException {// проверка на число
-
-
         try {
             Integer.parseInt(st);
             return true;
         }catch (NumberFormatException e){
-
              if (!st.equals("(") && !st.equals(")") && !st.equals("-") && !st.equals("+") && !st.equals("/") && !st.equals("*") && !st.equals("^") ){
                 System.out.println(st +" - неверный символ");
                 throw new IOException();
             }
-
             return false;
-
         }
     }
 
