@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class cal {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         try {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String[] stroka = (preobroz(bufferedReader.readLine())).split(" ");
@@ -74,24 +74,26 @@ public class cal {
                 i--;
             } else i++;
         }
-            System.out.println(ar.get(0));
+        System.out.println(ar.get(0));
 
-    }catch (IndexOutOfBoundsException x){
+        }catch (IndexOutOfBoundsException x){
             System.out.println("некорректный ввод");
+        }catch (NumberFormatException x){
+            System.out.println(" - неверный символ");
+        }catch (IOException x){
+            System.out.println("Ошибка ввода-вывода");
         }
-    catch (IOException x){
-                System.out.println("Error");
-            }
     }
 
-    private static boolean metod4islo(String st) throws IOException {// проверка на число
+    private static boolean metod4islo(String st) throws NumberFormatException {// проверка на число
         try {
             Integer.parseInt(st);
             return true;
         }catch (NumberFormatException e){
+
              if (!st.equals("(") && !st.equals(")") && !st.equals("-") && !st.equals("+") && !st.equals("/") && !st.equals("*") && !st.equals("^") ){
-                System.out.println(st +" - неверный символ");
-                throw new IOException();
+                 System.out.print(st);
+                throw new NumberFormatException();
             }
             return false;
         }
@@ -105,7 +107,6 @@ public class cal {
             case '*': result = Integer.parseInt(st1)*Integer.parseInt(st2);break;
             case '/': result = Integer.parseInt(st1)/Integer.parseInt(st2);break;
             case '^': result = (int)Math.pow(Integer.parseInt(st1),Integer.parseInt(st2));break;
-
         }
         return String.valueOf(result);
     }
@@ -121,7 +122,6 @@ public class cal {
         }
         else return false;
     }
-
     private static String  preobroz(String s){      //форматирование строки
            s = s.replaceAll("\\(", " ( ");
            s = s.replaceAll("\\)", " ) ");
@@ -133,6 +133,4 @@ public class cal {
            s = s.replaceAll(" +"," ");
         return s;
     }
-
-
 }
